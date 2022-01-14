@@ -1,20 +1,15 @@
 package com.raf.notifiationservice.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+import com.raf.notifiationservice.dto.NotificationCreateDto;
+import com.raf.notifiationservice.dto.NotificationDto;
 
-public class NotificationService {
+import org.springframework.stereotype.Service;
 
-    @Autowired
-    public JavaMailSender mailSender;
+import java.util.List;
 
-    public void sendSimpleMessage(String to, String subject, String text) {
+@Service
+public interface NotificationService {
 
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
-        mailSender.send(message);
-    }
+    List<NotificationDto> findAll();
+    void sendNotification(NotificationCreateDto notificationCreateDto);
 }
